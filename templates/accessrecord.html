@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>AccessRecord</h1>
+        <table border="5px">
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Date</th>
+            </tr>
+        {% for aro in webpages %}
+            <tr>
+                <td>{{ aro.name }}</td>
+                <td>{{ aro.author }}</td>
+                <td>{{ aro.date }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

@@ -8,14 +8,16 @@
 <body>
     <center>
         <h1>AccessRecord</h1>
-        <table border="5px">
+        <table border="5px" cellpadding = '10px'>
             <tr>
+                <th>pk</th>
                 <th>Name</th>
                 <th>Author</th>
                 <th>Date</th>
             </tr>
-        {% for aro in webpages %}
+        {% for aro in accessrecords %}
             <tr>
+                <td>{{aro.pk}}</td>
                 <td>{{ aro.name }}</td>
                 <td>{{ aro.author }}</td>
                 <td>{{ aro.date }}</td>

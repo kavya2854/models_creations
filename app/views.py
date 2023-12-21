@@ -2,6 +2,7 @@ from django.shortcuts import render
 from app.models import *
 from django.http import HttpResponse
 from django.db.models.functions import Length
+from django.db.models import Q
 # Create your views here.
 def topic(request):
     QLTO = Topic.objects.all()
@@ -33,7 +34,11 @@ def webpage(request):
     QLWO = Webpage.objects.filter(name__regex = '\w+t$')
     QLWO = Webpage.objects.all()[2:5:]
     QLWO = Webpage.objects.filter(name__regex = '\w+na$')
-    
+    QLWO = Webpage.objects.all()
+    QLWO = Webpage.objects.filter(topic_name = 'Throwball',url__endswith = 'in')
+    QLWO = Webpage.objects.filter(Q(topic_name = 'Basket Ball') & Q(url__endswith = 'com'))
+    QLWO = Webpage.objects.filter(Q(topic_name = 'Cricket') | Q(url__endswith = 'com'))
+   
 
     d = {'webpages':QLWO}
     return render(request,'webpage.html',d)
@@ -44,6 +49,8 @@ def accessrecord(request):
     QLARO = AccessRecord.objects.filter(date__month = '12')
     QLARO = AccessRecord.objects.filter(date__day = '19')
     QLARO = AccessRecord.objects.filter(author__startswith = 'K')
+    
+    
     d = {'accessrecords':QLARO}
     return render(request,'accessrecord.html',d)
 

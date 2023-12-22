@@ -97,4 +97,12 @@ def update_webpage(request):
     return render(request,'webpage.html',d)
 
 
+def delete_webpage(request):
+    Webpage.objects.filter(topic_name = 'Cricket').delete()
+    #Webpage.objects.all().delete()
+    QLWO = Webpage.objects.all()
+    d = {'webpages':QLWO}
+    return render(request,'webpage.html',d)
+
+
 

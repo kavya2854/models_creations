@@ -50,7 +50,6 @@ def accessrecord(request):
     QLARO = AccessRecord.objects.filter(date__day = '19')
     QLARO = AccessRecord.objects.filter(author__startswith = 'K')
     
-    
     d = {'accessrecords':QLARO}
     return render(request,'accessrecord.html',d)
 
@@ -77,6 +76,25 @@ def insert_accessrecord(request):
     NARO = AccessRecord.objects.get_or_create(name = WO,date = d,author = a)[0]
     NARO.save()
     return HttpResponse('AccessRecord is Created')
+
+def update_webpage(request):
+    Webpage.objects.filter(topic_name = 'Cricket').update(name = 'Virat')
+    Webpage.objects.filter(topic_name = 'Basket Ball').update(url = 'https://sidhu.in')
+    Webpage.objects.filter(name = 'Teju').update(topic_name = 'Kabaddi')
+    Webpage.objects.update_or_create(topic_name = 'Basket Ball',defaults = {'name':'Sharief'})
+    ITO = Topic.objects.get_or_create(topic_name = 'Cricket')[0]
+    ITO.save()
+    Webpage.objects.update_or_create(name = 'RohitSharma',defaults = {'topic_name':ITO})
+    Webpage.objects.filter(name = 'RohitSharma').update(url = 'https://rohitsharma.in')
+    Webpage.objects.filter(name = 'Virat').update(url = 'https://virat.in')
+    IWTO = Topic.objects.get_or_create(topic_name = 'Rugby')[0]
+    IWTO.save()
+    Webpage.objects.update_or_create(name = 'Richie',defaults = {'topic_name':IWTO,'url':'https://richie.in'})
+    #Webpage.objects.update_or_create(name = 'Richie',defaults = {'url':'https://richie.in'})
+    
+    QLWO = Webpage.objects.all()
+    d = {'webpages':QLWO}
+    return render(request,'webpage.html',d)
 
 
 
